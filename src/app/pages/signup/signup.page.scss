@@ -3,11 +3,6 @@ ion-content {
     url("/assets/background.jpeg") no-repeat center center / cover;
 }
 
-ion-img {
-    width: 75%;
-    float: right;
-}
-
 /*
 .errors {
     font-size: small;
@@ -21,10 +16,11 @@ ion-img {
 
 ion-img {
     width: 75%;
+    float: right;
 }
 
 .login-section {
-    height: 74vh;
+    height: 80vh;
     width: 100%;
     max-width: 500px;
     background: #fff;

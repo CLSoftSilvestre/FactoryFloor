@@ -5,8 +5,8 @@
 
   <div class="login-section ion-padding">
     <div class="heading ion-padding">
-      <h1>Welcome to Factory Floor</h1>
-      <p>Sign in to continue</p>
+      <h1>Create new account...</h1>
+      <p>Please fill data select register</p>
     </div>
     
     <!-- Codigo inicial -->
@@ -48,12 +48,23 @@
         <span *ngIf="password.errors?.required">Password is required</span>
         <span *ngIf="password.errors?.minlength">Password needs to be 6 characters</span>
       </div-->
+      <div class="form-input">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">CONFIRM PASSWORD</ion-label>
+          <ion-input
+            type="password"
+            formControlName="confirmpassword"
+            clearInput="true">
+          </ion-input>
+        </ion-item>
+      </div>
+
     </form>
   
     <div class="action-buttons ion-padding">
-      <ion-button size="large" class="login-button" (click)="signIn()">Sign In</ion-button>
-      <p>Forgot password ?</p>
-      <ion-button class="signup-button" size="large" fill="outline" routerLink="/signup">Sign Up</ion-button>
+      <ion-button size="large" class="login-button" (click)="signUp()">Register</ion-button>
+      <ion-button class="signup-button" size="large" fill="outline" routerLink="/">Back to Sign In</ion-button>
     </div>
   
     <!--ion-button (click)="signUp()" expand="full">Sign up</ion-button>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "factory-floor-web": {
+      "hosting": {
+        "app": [
+          "factory-floor-web"
+        ]
+      }
+    }
+  }
+}
