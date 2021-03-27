@@ -1,0 +1,7 @@
+{
+  "name": "factoryfloor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
