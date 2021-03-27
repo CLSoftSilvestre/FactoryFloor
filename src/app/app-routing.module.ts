@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { TabsPage } from './pages/tabs/tabs.page';
 
 // Send unauthorized users to login
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/']);
 
 // Automatically log in users
-const redirectLoggedInToChat = () => redirectLoggedInTo(['/chat']);
+const redirectLoggedInToChat = () => redirectLoggedInTo(['/tabs']);
 
 const routes: Routes = [
   {
@@ -15,14 +16,14 @@ const routes: Routes = [
     ...canActivate(redirectLoggedInToChat)
   },
   {
-    path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule),
-    ...canActivate(redirectUnauthorizedToLogin)
-  },
-  {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
+    ...canActivate(redirectUnauthorizedToLogin),
+  }
 ];
 
 @NgModule({

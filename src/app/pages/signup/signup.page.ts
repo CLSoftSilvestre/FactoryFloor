@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ChatService } from 'src/app/services/chat.service';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -22,7 +23,7 @@ export class SignupPage implements OnInit {
     this.credentialForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmpassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmpassword: ['', Validators.required]
     });
   }
 
