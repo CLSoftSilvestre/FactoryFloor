@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class LoginPage implements OnInit {
               private router: Router,
               private alertController: AlertController,
               private loadingController: LoadingController,
+              private authService: AuthService,
               private chatService: ChatService) { }
 
   ngOnInit() {
@@ -29,7 +31,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.chatService.signUp(this.credentialForm.value).then(user => {
+    this.authService.signUp(this.credentialForm.value).then(user => {
       loading.dismiss();
       // replaced URL faz com que o utilizador não possa retroceder no Android
       this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
@@ -49,7 +51,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    this.chatService.signIn(this.credentialForm.value).then(user => {
+    this.authService.signIn(this.credentialForm.value).then(user => {
       loading.dismiss();
       // replaced URL faz com que o utilizador não possa retroceder no Android
       this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });

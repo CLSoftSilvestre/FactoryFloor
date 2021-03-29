@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { ChatService, Message } from 'src/app/services/chat.service';
+
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +17,7 @@ export class ChatPage implements OnInit {
   messages: Observable<Message[]>;
   newMsg = '';
 
-  constructor(private chatService: ChatService, private router: Router) { }
+  constructor(private authService: AuthService, private chatService: ChatService, private router: Router) { }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessage();
@@ -29,7 +31,7 @@ export class ChatPage implements OnInit {
   }
 
   signOut() {
-    this.chatService.signOut().then(() => {
+    this.authService.signOut().then(() => {
       // Esperar pela resolução da promisse para navegar para a página de login
       this.router.navigateByUrl('/', { replaceUrl: true });
     });

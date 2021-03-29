@@ -13,3 +13,22 @@ Run the code in the browser
 ```bash
 ionic serve
 ```
+
+## Usage
+Adding new module
+
+```bash
+ionic generate service services/name_of_the_service
+```
+
+Adding new page
+
+```bash
+ionic generate page pages/name_of_the_page
+```
+
+Adding new component
+
+```bash
+ionic generate page components/name_of_the_component
+```

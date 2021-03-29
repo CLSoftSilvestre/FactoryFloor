@@ -25,35 +25,13 @@ export interface Message {
 export class ChatService {
   currentUser: User = null;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth,
+              private afs: AngularFirestore) {
+
     this.afAuth.onAuthStateChanged(user => {
       console.log('Changed: ', user);
       this.currentUser = user;
     });
-  }
-
-  async signUp({ email, password}) {
-    const credential = await this.afAuth.createUserWithEmailAndPassword(
-      email,
-      password
-    );
-    console.log('result: ', credential);
-    const uid = credential.user.uid;
-
-    return this.afs.doc(
-      `users/${uid}`
-      ).set({
-        uid,
-        email: credential.user.email,
-      });
-  }
-
-  signIn({ email, password}) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
-  }
-
-  signOut() {
-    return this.afAuth.signOut();
   }
 
   addChatMessage(msg) {
