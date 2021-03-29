@@ -13,10 +13,10 @@ export class LoginPage implements OnInit {
   credentialForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private alertController: AlertController,
-    private loadingController: LoadingController,
-    private chatService: ChatService) { }
+              private router: Router,
+              private alertController: AlertController,
+              private loadingController: LoadingController,
+              private chatService: ChatService) { }
 
   ngOnInit() {
     this.credentialForm = this.fb.group({
@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     this.chatService.signUp(this.credentialForm.value).then(user => {
       loading.dismiss();
       // replaced URL faz com que o utilizador não possa retroceder no Android
-      this.router.navigateByUrl('/chat', { replaceUrl: true });
+      this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({
@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
     this.chatService.signIn(this.credentialForm.value).then(user => {
       loading.dismiss();
       // replaced URL faz com que o utilizador não possa retroceder no Android
-      this.router.navigateByUrl('/chat', { replaceUrl: true });
+      this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({

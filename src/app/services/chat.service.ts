@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 
 export interface User {
-  uid: string,
-  email: string
+  uid: string;
+  email: string;
 }
 
 export interface Message {
-  createdAt: firebase.default.firestore.FieldValue
+  createdAt: firebase.default.firestore.FieldValue;
   id: string;
   from: string;
   msg: string;
@@ -27,9 +27,9 @@ export class ChatService {
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.afAuth.onAuthStateChanged(user => {
-      console.log('Changed: ',user);
+      console.log('Changed: ', user);
       this.currentUser = user;
-    })
+    });
   }
 
   async signUp({ email, password}) {
@@ -45,7 +45,7 @@ export class ChatService {
       ).set({
         uid,
         email: credential.user.email,
-      })
+      });
   }
 
   signIn({ email, password}) {
@@ -58,7 +58,7 @@ export class ChatService {
 
   addChatMessage(msg) {
     return this.afs.collection('messages').add({
-      msg: msg,
+      msg: {msg}.msg,
       from: this.currentUser.uid,
       createdAt: firebase.default.firestore.FieldValue.serverTimestamp()
     });
@@ -73,14 +73,14 @@ export class ChatService {
         return this.afs.collection('messages', ref => ref.orderBy('createdAt')).valueChanges({ idField: 'id'}) as Observable<Message[]>;
       }),
       map(messages => {
-        for(let m of messages) {
+        for (const m of messages) {
           m.fromName = this.getUserForMsg(m.from, users);
           m.myMsg = this.currentUser.uid === m.from;
         }
-        console.log('all messages: ', messages)
+        console.log('all messages: ', messages);
         return messages;
       })
-    )
+    );
   }
 
   getUsers() {
@@ -88,8 +88,8 @@ export class ChatService {
   }
 
   getUserForMsg(msgFromId, users: User[]): string {
-    for (let usr of users) {
-      if (usr.uid == msgFromId) {
+    for (const usr of users) {
+      if (usr.uid === msgFromId) {
         return usr.email;
       }
     }
