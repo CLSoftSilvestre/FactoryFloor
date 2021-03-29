@@ -34,13 +34,12 @@ ionic generate page components/name_of_the_component
 ```
 
 # Build and Publish
-To build and publish the app to firebase you need to have firebase-tools installed
+To build and publish the app to firebase you need to have Android Studio for Android compilation and XCode for iOS
+
 
 ```bash
-npm install -g firebase-tools
+ionic capacitor build android
+ionic capacitor build ios
 ```
 
-```bash
-ionic build --prod
-firebase deploy
-```
+Then compile the project in the correct software.
