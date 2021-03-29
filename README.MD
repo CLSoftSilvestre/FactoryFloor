@@ -32,3 +32,15 @@ Adding new component
 ```bash
 ionic generate page components/name_of_the_component
 ```
+
+# Build and Publish
+To build and publish the app to firebase you need to have firebase-tools installed
+
+```bash
+npm install -g firebase-tools
+```
+
+```bash
+ionic build --prod
+firebase deploy
+```
