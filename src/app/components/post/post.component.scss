@@ -2,3 +2,27 @@
 ion-card {
     background-color: #ffffff
   }
+
+[size="small"] {
+  height: 20px;
+  font-size: 12px;
+}
+
+[size="large"] {
+  height: 50px;
+  
+  padding: 25px;
+  
+  border-radius: 25px;
+}
+
+ion-chip.wide {
+  width: 100%;
+  
+  justify-content: center;
+}
+
+ion-item-divider{
+  margin-top: 0px;
+  min-height: 1px!important;
+}
