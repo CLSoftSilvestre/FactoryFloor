@@ -1,6 +1,14 @@
 # FACTORY FLOOR
 Mobile app to manage workshop equipments data, technical data, safety information and procedures.
 
+# Colors theme
+Primary:    #05445E
+Secondary:  #189AB4
+Terceary:   #75E6DA
+Light:      #D4F1F4
+
+Summer Splash (canvas.com)
+
 ## Test
 Install the node modules.
 

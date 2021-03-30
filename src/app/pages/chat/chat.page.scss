@@ -16,7 +16,7 @@
 }
 
 .my-message {
-    background: var(--ion-color-medium);
+    background: var(--ion-color-secondary-tint);
     color: #fff;
 }
 
@@ -29,4 +29,8 @@
     color: #dfdfdf;
     float: right;
     font-size: small;
+}
+
+ion-content{
+    --ion-background-color: var(--ion-color-light) !important
 }
