@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
+import { Observable } from 'rxjs';
 import { NewPostModalPage } from 'src/app/pages/new-post-modal/new-post-modal.page';
+import { PostService, Post } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-feed',
@@ -9,9 +12,13 @@ import { NewPostModalPage } from 'src/app/pages/new-post-modal/new-post-modal.pa
 })
 export class FeedPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  posts: Observable<Post[]>;
+
+  constructor(public modalController: ModalController, private postService: PostService) { }
 
   ngOnInit() {
+    this.posts = this.postService.getPostMessage();
+    console.log('Posts: ', this.posts);
   }
 
   async presentModal() {

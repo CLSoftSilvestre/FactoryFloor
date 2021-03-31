@@ -9,7 +9,7 @@
 
 <ion-content>
   <!-- Scrollable Segment -->
-  <ion-list-header>Type of post</ion-list-header>
+  <ion-list-header>Select the type of post</ion-list-header>
 
   <ion-segment color="primary" value="assistance" (ionChange)="typePostChanged($event)" value="information">
     <ion-segment-button value="request">
@@ -28,9 +28,9 @@
 
   <!-- Textarea with custom number of rows and cols -->
 <ion-item>
-  <ion-textarea rows="6" cols="20" placeholder="Enter more information to post here..."></ion-textarea>
+  <ion-textarea rows="6" cols="20" [(ngModel)]="newPostMsg" placeholder="Enter more information to post here..."></ion-textarea>
 </ion-item>
 
-<ion-button expand="block">Post to feed</ion-button>
+<ion-button expand="block" [disabled]="newPostMsg === ''" (click)="addNewPost()">Post to feed</ion-button>
 
 </ion-content>

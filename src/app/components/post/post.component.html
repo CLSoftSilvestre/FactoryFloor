@@ -3,30 +3,28 @@
     <ion-grid>
       <ion-row>
         <ion-col size="4">
-          <ion-img src="./assets/undraw_QA_engineers_dg5p.svg"></ion-img>
+          <ion-img [src]="postImage"></ion-img>
         </ion-col>
         <ion-col size="8">
           <ion-row>
             <ion-text color="primary">
-              <h1>Celso Silvestre</h1>
+              <h1>{{ post.from }}</h1>
             </ion-text>
           </ion-row>
-          <ion-row>
+          <!--ion-row>
             <ion-text color="secondary">
               <h2>Engineering Specialist</h2>
             </ion-text>
-          </ion-row>
+          </ion-row-->
           <ion-row>
             <ion-text color="secondary">
-              <small>30.03.2021 13:36</small>
+              <small>{{ post.createdAt?.toMillis() | date:'short' }}</small>
             </ion-text>
           </ion-row>
         </ion-col>
         <ion-row>
           <ion-text color="primary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam facilisis imperdiet lectus vel elementum.
-             Sed vulputate elit laoreet, mattis elit vel, ultrices enim. Integer ut odio a mauris mollis condimentum non fringilla justo. 
-             Nulla vel felis leo. Phasellus accumsan ornare consequat. Nunc at gravida erat, pretium semper arcu.
+            {{ post.msg }}
           </ion-text>
         </ion-row>
       </ion-row>
@@ -34,9 +32,17 @@
 
     <ion-grid>
       <ion-row>
-        <ion-chip>
-          <ion-icon name="hammer-outline" color="success"></ion-icon>
+        <ion-chip *ngIf="post.type==='request'" size="small">
+          <ion-icon name="hammer-outline" color="danger"></ion-icon>
           <ion-label>Request assistance</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="post.type==='information'" size="small">
+          <ion-icon name="information-circle-outline" color="success"></ion-icon>
+          <ion-label>Information</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="post.type==='question'" size="small">
+          <ion-icon name="help-circle-outline" color="warning"></ion-icon>
+          <ion-label>Question</ion-label>
         </ion-chip>
       </ion-row>
     </ion-grid>
