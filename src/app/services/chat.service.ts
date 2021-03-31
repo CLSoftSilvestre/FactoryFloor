@@ -8,6 +8,7 @@ import { switchMap, map } from 'rxjs/operators';
 export interface User {
   uid: string;
   email: string;
+  name?: string;
 }
 
 export interface Message {
@@ -68,7 +69,7 @@ export class ChatService {
   getUserForMsg(msgFromId, users: User[]): string {
     for (const usr of users) {
       if (usr.uid === msgFromId) {
-        return usr.email;
+        return usr.name;
       }
     }
     return 'Deleted';

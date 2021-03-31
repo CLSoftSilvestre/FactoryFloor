@@ -8,6 +8,7 @@ import { switchMap, map } from 'rxjs/operators';
 export interface User {
   uid: string;
   email: string;
+  name?: string;
 }
 
 export interface Post {
@@ -48,7 +49,7 @@ export class PostService {
       switchMap(res => {
         users = res;
         console.log('all users: ', users);
-        return this.afs.collection('posts', ref => ref.orderBy('createdAt')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
+        return this.afs.collection('posts', ref => ref.orderBy('createdAt','desc')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
       }),
       map(posts => {
         for (const m of posts) {
@@ -67,7 +68,7 @@ export class PostService {
   getUserForPost(msgFromId, users: User[]): string {
     for (const usr of users) {
       if (usr.uid === msgFromId) {
-        return usr.email;
+        return usr.name;
       }
     }
     return 'Deleted';

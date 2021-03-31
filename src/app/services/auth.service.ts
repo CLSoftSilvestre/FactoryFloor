@@ -33,6 +33,7 @@ export class AuthService {
       ).set({
         uid,
         email: credential.user.email,
+        name: credential.user.email.split("@")[0]
       });
   }
 

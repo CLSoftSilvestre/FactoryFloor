@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-popover',
@@ -10,7 +11,10 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopoverComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router, public popoverController: PopoverController) { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              public popoverController: PopoverController,
+              public toastController: ToastController) { }
 
   ngOnInit() {}
 
@@ -20,5 +24,15 @@ export class PopoverComponent implements OnInit {
       this.popoverController.dismiss();
       this.router.navigateByUrl('/', { replaceUrl: true });
     });
+  }
+
+  async editProfile() {
+    this.popoverController.dismiss();
+    const toast = await this.toastController.create({
+      message: 'Implementation not set yet.',
+      duration: 2000,
+      color: 'warning'
+    });
+    toast.present();
   }
 }

@@ -23,11 +23,7 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule),
     ...canActivate(redirectUnauthorizedToLogin),
-  },  {
-    path: 'new-post-modal',
-    loadChildren: () => import('./pages/new-post-modal/new-post-modal.module').then( m => m.NewPostModalPageModule)
   }
-
 ];
 
 @NgModule({

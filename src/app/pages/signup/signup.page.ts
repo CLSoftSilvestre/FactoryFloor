@@ -33,7 +33,7 @@ export class SignupPage implements OnInit {
     const loading = await this.loadingController.create();
     await loading.present();
 
-    if ( this.password !== this.confirmpassword ){
+    if ( this.password.value !== this.confirmpassword.value ){
       console.log('Error: Passwords does not match!');
       loading.dismiss();
       const alert = await this.alertController.create({
