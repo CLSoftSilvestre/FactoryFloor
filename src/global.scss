@@ -26,5 +26,15 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .my-custom-class {
-    --background: #222;
+  --background: #222;
+}
+
+.new-post-modal{
+  .modal-wrapper {
+    position: absolute;
+    bottom: 0;
+    min-height: initial;
+    top: initial;
+    height: 50%;
   }
+}

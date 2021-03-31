@@ -24,7 +24,7 @@ ion-img {
 }
 
 .login-section {
-    height: 74vh;
+    height: 80vh;
     width: 100%;
     max-width: 500px;
     background: #fff;
@@ -41,13 +41,14 @@ ion-img {
         margin-top: 10px;
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: bolder;
+            color: var(--ion-color-primary)
         }
         p {
             margin-top: 20px;
             font-size: 1rem;
-            color: #7b7b7b;
+            color: var(--ion-color-secondary)
         }
     }
     .login-form {
@@ -83,14 +84,15 @@ ion-img {
     .action-buttons {
         text-align: center;
         .login-button {
-            --background: #f9b801;
+            //--background: #f9b801;
+            --background: var(--ion-color-primary);
             width: 100%;
             font-weight: bold;
         }
         p {
             margin-top: 15px;
             font-size: 1rem;
-            color: #7b7b7b;
+            color: var(--ion-color-secondary);
         }
         .signup-button {
             --border-color: #b4b4b4;

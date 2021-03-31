@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Create new post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Scrollable Segment -->
+  <ion-list-header>Type of post</ion-list-header>
+
+  <ion-segment color="primary" value="assistance" (ionChange)="typePostChanged($event)" value="information">
+    <ion-segment-button value="request">
+      <ion-label>Request assistance</ion-label>
+      <ion-icon name="hammer-outline" color="danger"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="question">
+      <ion-label>Question</ion-label>
+      <ion-icon name="help-circle-outline" color="warning"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="information">
+      <ion-label>Information</ion-label>
+      <ion-icon name="information-circle-outline" color="success"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Textarea with custom number of rows and cols -->
+<ion-item>
+  <ion-textarea rows="6" cols="20" placeholder="Enter more information to post here..."></ion-textarea>
+</ion-item>
+
+<ion-button expand="block">Post to feed</ion-button>
+
+</ion-content>
