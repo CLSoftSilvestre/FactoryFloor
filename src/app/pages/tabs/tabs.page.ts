@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonTabs, PopoverController } from '@ionic/angular';
 import { PopoverComponent } from 'src/app/components/popover/popover.component';
 
 @Component({
@@ -8,6 +8,8 @@ import { PopoverComponent } from 'src/app/components/popover/popover.component';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
+  @ViewChild(IonTabs) tabs: IonTabs;
+  selected = '';
 
   constructor(public popoverController: PopoverController) { }
 
@@ -22,6 +24,10 @@ export class TabsPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  setSelectedTab() {
+    this.selected = this.tabs.getSelected();
   }
 
 }
