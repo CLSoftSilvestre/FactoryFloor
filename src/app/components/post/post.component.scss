@@ -1,7 +1,13 @@
 
+
 ion-card {
     background-color: #ffffff
   }
+
+.commentsarea {
+  background-color: #ffffff !important;
+
+}
 
 [size="small"] {
   height: 20px;
@@ -47,5 +53,9 @@ ion-img {
 }
 
 .sendCommentBtn {
-  font-size: x-large;
+  font-size: large !important;
+}
+
+.btnRow {
+  text-align: center;
 }

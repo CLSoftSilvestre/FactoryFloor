@@ -1,5 +1,5 @@
 <ion-card color="light">
-  <ion-card-content>
+  <ion-card-content class="ion-no-padding">
     <ion-grid>
       <ion-row>
         <ion-col size="4">
@@ -22,7 +22,7 @@
             </ion-text>
           </ion-row>
         </ion-col>
-        <ion-row>
+        <ion-row class="ion-padding">
           <ion-text color="primary">
             {{ post.msg }}
           </ion-text>
@@ -31,7 +31,7 @@
     </ion-grid>
 
     <ion-grid>
-      <ion-row>
+      <ion-row class="btnRow">
         <ion-chip *ngIf="post.type==='request'" size="small">
           <ion-icon name="hammer-outline" color="danger"></ion-icon>
           <ion-label>Request assistance</ion-label>
@@ -44,20 +44,25 @@
           <ion-icon name="help-circle-outline" color="warning"></ion-icon>
           <ion-label>Question</ion-label>
         </ion-chip>
+
+        <ion-chip *ngIf="(post.comments$ | async)?.length>=0" size="small">
+          <ion-icon name="chatbox-ellipses-outline" color="success"></ion-icon>
+          <ion-label>View Comments</ion-label>
+        </ion-chip>
       </ion-row>
     </ion-grid>
 
     <ion-item-divider></ion-item-divider>
 
-    <ion-list *ngIf="viewComments">
+    <ion-list *ngIf="viewComments" class="commentsarea">
 
 
       <ion-row class="ion-align-items-center">
-        <ion-col size="10">
+        <ion-col size="9">
           <ion-textarea autoGrow="true" class="comment-input" rows="1" maxLenght="500" [(ngModel)]="newMsg" placeholder="Add your comment here...">
           </ion-textarea>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="3">
           <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn" (click)="addPostComment()">
             <ion-icon class="sendCommentBtn" name="send" slot="icon-only"></ion-icon>
           </ion-button>
@@ -69,10 +74,10 @@
 
             <ion-col size="10" class="align-items-stretch">
               <ion-row class="align-items-stretch">
-                <ion-text color="primary">{{comment.fromName}} . <span class="timestamp">{{ comment.createdAt?.toMillis() | date:'short' }}</span></ion-text>
+                <ion-text color="secondary">{{comment.fromName}} . <span class="timestamp">{{ comment.createdAt?.toMillis() | date:'short' }}</span></ion-text>
               </ion-row>
               <ion-row class="align-items-stretch">
-                <ion-note>{{comment.msg}}</ion-note>
+                <ion-note color="dark">{{comment.msg}}</ion-note>
               </ion-row>
             </ion-col>
 
@@ -83,22 +88,23 @@
     <ion-item-divider></ion-item-divider>
 
     <ion-grid>
-      <ion-row class="ion-align-items-end">
 
+      <ion-row class="btnRow">
 
-        <ion-col class="ion-align-self-start" size="4">
+        <ion-col size="4" class="ion-align-self-center">
           <ion-button disabled color="secondary"><ion-icon name="call-outline" slot="icon-only"></ion-icon></ion-button>
         </ion-col>
 
-        <ion-col size="4">
+        <ion-col size="4" class="ion-align-self-center">
           <ion-button (click)="toggleViewComments()" color="secondary"><ion-icon name="chatbox-ellipses-outline" slot="icon-only"></ion-icon></ion-button> 
         </ion-col>
 
-        <ion-col size="4">
-          <ion-button color="secondary"><ion-icon name="heart-outline" slot="icon-only"></ion-icon></ion-button>
+        <ion-col size="4" class="ion-align-self-center">
+          <ion-button (click)="togglePostLiked()" color="secondary"><ion-icon [name]="postLiked === true ? 'heart' : 'heart-outline'" slot="icon-only"></ion-icon></ion-button>
         </ion-col>
 
       </ion-row>
+
     </ion-grid>
 
   </ion-card-content>

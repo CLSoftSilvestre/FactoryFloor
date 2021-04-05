@@ -34,6 +34,8 @@ export interface Comment {
 export class PostService {
   currentUser: User = null;
   typeOfPost: string = null;
+  
+  users: User[];
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore) {
@@ -65,6 +67,7 @@ export class PostService {
     return this.getUsers().pipe(
       switchMap(res => {
         users = res;
+        this.users = res;
         console.log('all users: ', users);
         return this.afs.collection('posts', ref => ref.orderBy('createdAt','desc')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
       }),
@@ -82,7 +85,19 @@ export class PostService {
   }
 
   getPostComments(messageId) {
-    return this.afs.collection('posts').doc(messageId).collection('comments', ref => ref.orderBy('createdAt','desc')).valueChanges({ idField: 'id' }) as Observable<Comment[]>;
+    let users = [];
+    return this.getUsers().pipe(
+      switchMap(res => {
+        users = res;
+        return this.afs.collection('posts').doc(messageId).collection('comments', ref => ref.orderBy('createdAt', 'desc')).valueChanges({ idField: 'id' }) as Observable<Comment[]>;
+      }),
+      map(comments => {
+        for (const c of comments) {
+          c.fromName = this.getUserForPost(c.from, users);
+        }
+        return comments;
+      })
+    );
   }
 
   getUsers() {

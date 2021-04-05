@@ -12,6 +12,8 @@ export class PostComponent implements OnInit {
 
   viewComments: boolean = false;
 
+  postLiked: boolean = false;
+
   newMsg = '';
 
   @Input() post: Post;
@@ -48,7 +50,10 @@ export class PostComponent implements OnInit {
     this.postService.addPostComment(this.newMsg, this.post.id).then(()=> {
       this.newMsg = '';
     });
-    
+  }
+
+  togglePostLiked() {
+    this.postLiked = !this.postLiked;
   }
 
 }
