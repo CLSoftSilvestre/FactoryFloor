@@ -17,6 +17,15 @@ export interface Post {
   from: string;
   msg: string;
   type: string;
+  comments?: Comment[];
+}
+
+export interface Comment {
+  createdAt: firebase.default.firestore.FieldValue;
+  id: string;
+  from: string;
+  msg: string;
+  fromName: string;
 }
 
 @Injectable({
@@ -43,6 +52,14 @@ export class PostService {
     });
   }
 
+  addPostComment(msg, postId) {
+    return this.afs.collection('posts').doc(postId).collection('comments').add({
+      msg: {msg}.msg,
+      from: this.currentUser.uid,
+      createdAt: firebase.default.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
   getPostMessage() {
     let users = [];
     return this.getUsers().pipe(
@@ -54,11 +71,18 @@ export class PostService {
       map(posts => {
         for (const m of posts) {
           m.from = this.getUserForPost(m.from, users);
+          this.getPostComments(m.id).subscribe( comments => {
+            m.comments = comments;
+          });
         }
         console.log('all post: ', posts);
         return posts;
       })
     );
+  }
+
+  getPostComments(messageId) {
+    return this.afs.collection('posts').doc(messageId).collection('comments', ref => ref.orderBy('createdAt','desc')).valueChanges({ idField: 'id' }) as Observable<Comment[]>;
   }
 
   getUsers() {

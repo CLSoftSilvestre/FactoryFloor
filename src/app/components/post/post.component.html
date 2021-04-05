@@ -49,16 +49,49 @@
 
     <ion-item-divider></ion-item-divider>
 
+    <ion-list *ngIf="viewComments">
+
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="10">
+          <ion-textarea autoGrow="true" class="comment-input" rows="1" maxLenght="500" [(ngModel)]="newMsg" placeholder="Add your comment here...">
+          </ion-textarea>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn" (click)="addPostComment()">
+            <ion-icon class="sendCommentBtn" name="send" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <div *ngFor="let comment of post.comments">
+        <ion-item button="true">
+
+            <ion-col size="10" class="align-items-stretch">
+              <ion-row class="align-items-stretch">
+                <ion-text color="primary">{{comment.fromName}} . <span class="timestamp">{{ comment.createdAt?.toMillis() | date:'short' }}</span></ion-text>
+              </ion-row>
+              <ion-row class="align-items-stretch">
+                <ion-note>{{comment.msg}}</ion-note>
+              </ion-row>
+            </ion-col>
+
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <ion-item-divider></ion-item-divider>
+
     <ion-grid>
       <ion-row class="ion-align-items-end">
 
 
         <ion-col class="ion-align-self-start" size="4">
-          <ion-button color="secondary"><ion-icon name="call-outline" slot="icon-only"></ion-icon></ion-button>
+          <ion-button disabled color="secondary"><ion-icon name="call-outline" slot="icon-only"></ion-icon></ion-button>
         </ion-col>
 
         <ion-col size="4">
-          <ion-button color="secondary"><ion-icon name="chatbox-ellipses-outline" slot="icon-only"></ion-icon></ion-button> 
+          <ion-button (click)="toggleViewComments()" color="secondary"><ion-icon name="chatbox-ellipses-outline" slot="icon-only"></ion-icon></ion-button> 
         </ion-col>
 
         <ion-col size="4">
@@ -67,5 +100,6 @@
 
       </ion-row>
     </ion-grid>
+
   </ion-card-content>
 </ion-card>

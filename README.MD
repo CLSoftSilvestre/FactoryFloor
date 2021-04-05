@@ -50,4 +50,12 @@ ionic capacitor build android
 ionic capacitor build ios
 ```
 
+Test with real Android device with live reload
+
+```bash
+ionic capacitor run android -l --external
+```
+
+
+
 Then compile the project in the correct software.

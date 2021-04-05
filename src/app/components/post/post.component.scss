@@ -26,3 +26,26 @@ ion-item-divider{
   margin-top: 0px;
   min-height: 1px!important;
 }
+
+ion-img {
+  width: 75px;
+}
+
+.timestamp {
+  font-size: x-small;
+  color: var(--ion-color-secondary);
+}
+
+.comment-input {
+  width: 100%;
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 6px;
+  background-color: #fff;
+  resize: none;
+  margin-top: 0px;
+  --padding-start: 8px;
+}
+
+.sendCommentBtn {
+  font-size: x-large;
+}

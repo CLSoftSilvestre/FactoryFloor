@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "factoryfloor",
+  "appId": "pt.azordev.factoryfloor",
+  "appName": "Factory Floor",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

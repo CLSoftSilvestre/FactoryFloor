@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from 'src/app/services/post.service';
+import { Post, PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -10,12 +10,17 @@ export class PostComponent implements OnInit {
 
   postImage: string = null;
 
+  viewComments: boolean = false;
+
+  newMsg = '';
+
   @Input() post: Post;
 
-  constructor() { }
+  constructor( private postService: PostService) { }
 
   ngOnInit() {
     this.checkPostImage();
+    console.log("Post view: ", this.post);
   }
 
   checkPostImage() {
@@ -33,6 +38,17 @@ export class PostComponent implements OnInit {
         this.postImage = './assets/undraw_QA_engineers_dg5p.svg';
         break;
     }
+  }
+
+  toggleViewComments() {
+    this.viewComments = !this.viewComments;
+  }
+
+  addPostComment() {
+    this.postService.addPostComment(this.newMsg, this.post.id).then(()=> {
+      this.newMsg = '';
+    });
+    
   }
 
 }
