@@ -77,7 +77,7 @@
                 <ion-text color="secondary">{{comment.fromName}} . <span class="timestamp">{{ comment.createdAt?.toMillis() | date:'short' }}</span></ion-text>
               </ion-row>
               <ion-row class="align-items-stretch">
-                <ion-note color="dark">{{comment.msg}}</ion-note>
+                <ion-text color="dark"><p>{{comment.msg}}</p></ion-text>
               </ion-row>
             </ion-col>
 
@@ -92,7 +92,7 @@
       <ion-row class="btnRow">
 
         <ion-col size="4" class="ion-align-self-center">
-          <ion-button disabled color="secondary"><ion-icon name="call-outline" slot="icon-only"></ion-icon></ion-button>
+          <ion-button [disabled] = "true" color="secondary"><ion-icon name="call-outline" slot="icon-only"></ion-icon></ion-button>
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-center">

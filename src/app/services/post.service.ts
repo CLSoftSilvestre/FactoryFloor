@@ -9,6 +9,7 @@ export interface User {
   uid: string;
   email: string;
   name?: string;
+  phone?: string;
 }
 
 export interface Post {
@@ -19,6 +20,7 @@ export interface Post {
   type: string;
   comments?: Comment[];
   countComments?: number;
+  userProfile?: User;
 }
 
 export interface Comment {
@@ -68,13 +70,13 @@ export class PostService {
     return this.getUsers().pipe(
       switchMap(res => {
         users = res;
-        this.users = res;
         console.log('all users: ', users);
         return this.afs.collection('posts', ref => ref.orderBy('createdAt', 'desc')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
       }),
       map(posts => {
         for (const m of posts) {
           m.from = this.getUserForPost(m.from, users);
+          m.userProfile = this.getUserProfile(m.from, users);
           this.getPostComments(m.id).subscribe( comments => {
             m.comments = comments;
             m.countComments = comments.length;
@@ -115,6 +117,15 @@ export class PostService {
       }
     }
     return 'Deleted';
+  }
+
+  getUserProfile(msgFromId, users: User[]): User {
+    for (const usr of users) {
+      if (usr.uid === msgFromId) {
+        return usr;
+      }
+    }
+    return null;
   }
 
 }

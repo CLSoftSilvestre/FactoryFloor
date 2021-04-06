@@ -9,6 +9,7 @@ export interface User {
   uid: string;
   email: string;
   name?: string;
+  phone?: string;
 }
 
 export interface Message {
