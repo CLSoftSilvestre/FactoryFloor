@@ -47,7 +47,7 @@
 
         <ion-chip *ngIf="(post.comments$ | async)?.length>=0" size="small">
           <ion-icon name="chatbox-ellipses-outline" color="success"></ion-icon>
-          <ion-label>View Comments</ion-label>
+          <ion-label>{{ post.countComments }} Comments</ion-label>
         </ion-chip>
       </ion-row>
     </ion-grid>

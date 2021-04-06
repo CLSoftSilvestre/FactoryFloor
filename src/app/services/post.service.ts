@@ -18,6 +18,7 @@ export interface Post {
   msg: string;
   type: string;
   comments?: Comment[];
+  countComments?: number;
 }
 
 export interface Comment {
@@ -34,7 +35,7 @@ export interface Comment {
 export class PostService {
   currentUser: User = null;
   typeOfPost: string = null;
-  
+
   users: User[];
 
   constructor(private afAuth: AngularFireAuth,
@@ -69,13 +70,14 @@ export class PostService {
         users = res;
         this.users = res;
         console.log('all users: ', users);
-        return this.afs.collection('posts', ref => ref.orderBy('createdAt','desc')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
+        return this.afs.collection('posts', ref => ref.orderBy('createdAt', 'desc')).valueChanges({ idField: 'id'}) as Observable<Post[]>;
       }),
       map(posts => {
         for (const m of posts) {
           m.from = this.getUserForPost(m.from, users);
           this.getPostComments(m.id).subscribe( comments => {
             m.comments = comments;
+            m.countComments = comments.length;
           });
         }
         console.log('all post: ', posts);
@@ -89,7 +91,9 @@ export class PostService {
     return this.getUsers().pipe(
       switchMap(res => {
         users = res;
-        return this.afs.collection('posts').doc(messageId).collection('comments', ref => ref.orderBy('createdAt', 'desc')).valueChanges({ idField: 'id' }) as Observable<Comment[]>;
+        return this.afs.collection('posts').doc(messageId)
+        .collection('comments', ref => ref.orderBy('createdAt', 'desc'))
+        .valueChanges({ idField: 'id' }) as Observable<Comment[]>;
       }),
       map(comments => {
         for (const c of comments) {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Post, PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -10,9 +11,9 @@ export class PostComponent implements OnInit {
 
   postImage: string = null;
 
-  viewComments: boolean = false;
+  viewComments = false;
 
-  postLiked: boolean = false;
+  postLiked = false;
 
   newMsg = '';
 
@@ -22,7 +23,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit() {
     this.checkPostImage();
-    console.log("Post view: ", this.post);
+    console.log('Post view: ', this.post);
   }
 
   checkPostImage() {
@@ -47,7 +48,7 @@ export class PostComponent implements OnInit {
   }
 
   addPostComment() {
-    this.postService.addPostComment(this.newMsg, this.post.id).then(()=> {
+    this.postService.addPostComment(this.newMsg, this.post.id).then(() => {
       this.newMsg = '';
     });
   }
