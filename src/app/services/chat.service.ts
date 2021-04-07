@@ -9,6 +9,7 @@ export interface User {
   uid: string;
   email: string;
   name?: string;
+  image?: string;
   phone?: string;
 }
 
@@ -19,6 +20,7 @@ export interface Message {
   msg: string;
   fromName: string;
   myMsg: boolean;
+  user?: User;
 }
 
 @Injectable({
@@ -55,6 +57,7 @@ export class ChatService {
       map(messages => {
         for (const m of messages) {
           m.fromName = this.getUserProfile(m.from, users).name;
+          m.user = this.getUserProfile(m.from, users);
           m.myMsg = this.currentUser.uid === m.from;
         }
         console.log('all messages: ', messages);
@@ -70,6 +73,9 @@ export class ChatService {
   getUserProfile(msgFromId, users: User[]): User {
     for (const usr of users) {
       if (usr.uid === msgFromId) {
+        if ( usr.image === 'notdefined' ) {
+          usr.image = 'assets/undraw_male_avatar_323b.svg';
+        }
         return usr;
       }
     }

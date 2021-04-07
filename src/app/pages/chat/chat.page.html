@@ -4,10 +4,20 @@
 <ion-content class="ion-padding">
   <ion-grid>
     <ion-row *ngFor="let message of messages | async">
-      <ion-col size="9"  class="message" [offset]="message.myMsg ? 3 : 0" [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
-        <b>{{ message.fromName }}</b><br>
-        <span>{{ message.msg }}</span>
+      
+      <ion-col size="10"  class="message" [offset]="message.myMsg ? 2 : 0" [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
+
+        <ion-row class="top-row">
+          <ion-img [src]="message.user.image"></ion-img>
+          <b class="ion-padding color-secondary"  >{{ message.fromName }}</b>
+        </ion-row>
+
+        <ion-text class="ion-margin" class="color-white">
+          {{ message.msg }}
+        </ion-text>
+
         <div class="time ion-tect-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
+
       </ion-col>
     </ion-row>
   </ion-grid>

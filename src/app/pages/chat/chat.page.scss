@@ -16,21 +16,51 @@
 }
 
 .my-message {
-    background: var(--ion-color-secondary-tint);
-    color: #fff;
+    background: #189ab4c4;
+    
+    .color-secondary {
+        color: #D4F1F4;
+    }
+
+    .color-white {
+        color: rgb(255, 255, 255);
+    }
+
+    .time {
+        color: #D4F1F4;
+        float: right;
+        font-size: small;
+    }
 }
 
 .other-message {
-    background: var(--ion-color-secondary);
-    color: #fff;
-}
+    background: #189ab442;
+    
+    .color-white {
+        color: #189ab4c4;
+    }
 
-.time {
-    color: #dfdfdf;
-    float: right;
-    font-size: small;
+    .color-secondary {
+        color: var(--ion-color-secondary);
+    }
+
+    .time {
+        color: #189ab4;
+        float: right;
+        font-size: small;
+    }
 }
 
 ion-content{
-    --ion-background-color: var(--ion-color-step-700) !important
+    // --ion-background-color: var(--ion-color-step-700) !important
+    --ion-background-color: #f2f2f2 !important
+}
+
+ion-img {
+    width: 40px;
+    border-radius: 20px;
+}
+
+.top-row {
+    margin-bottom: 10px;
 }
