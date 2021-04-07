@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 export interface User {
   uid: string;
   email: string;
+  name?: string;
+  image?: string;
+  phone?: string;
 }
 
 @Injectable({
@@ -46,4 +50,19 @@ export class AuthService {
     return this.afAuth.signOut();
   }
 
+  async getCurrentUser() {
+    return (await this.afAuth.currentUser).uid;
+  }
+
+  getUserProfile() {
+    this.getCurrentUser().then( uid => {
+      console.log('User UID: ', uid);
+
+      this.afs.collection('users').doc(uid).valueChanges().subscribe( profile => {
+        console.log('User Profile: ', profile);
+        return profile;
+      });
+    })
+    
+  }
 }
