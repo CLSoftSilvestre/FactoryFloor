@@ -13,8 +13,6 @@ export class PostComponent implements OnInit {
 
   viewComments = false;
 
-  postLiked = false;
-
   newMsg = '';
 
   @Input() post: Post;
@@ -54,7 +52,7 @@ export class PostComponent implements OnInit {
   }
 
   togglePostLiked() {
-    this.postLiked = !this.postLiked;
+    this.postService.updatePostLike(this.post);
   }
 
 }

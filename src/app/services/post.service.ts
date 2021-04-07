@@ -18,8 +18,11 @@ export interface Post {
   from: string;
   msg: string;
   type: string;
+  likes?: string[];
+  userLikes?: boolean;
   comments?: Comment[];
   countComments?: number;
+  countLikes?: number;
   userProfile?: User;
 }
 
@@ -77,6 +80,20 @@ export class PostService {
         for (const m of posts) {
           m.from = this.getUserForPost(m.from, users);
           m.userProfile = this.getUserProfile(m.from, users);
+
+          // check if likes array exist
+          if ( m.likes !== undefined && m.likes !== null ) {
+            m.countLikes = m.likes.length;
+            // check if uder uid is in the array of likes
+            if (m.likes.includes(this.currentUser.uid)) {
+              m.userLikes = true;
+            } else {
+              m.userLikes = false;
+            }
+          } else {
+            m.countLikes = 0;
+          }
+
           this.getPostComments(m.id).subscribe( comments => {
             m.comments = comments;
             m.countComments = comments.length;
@@ -126,6 +143,31 @@ export class PostService {
       }
     }
     return null;
+  }
+
+  updatePostLike(post: Post) {
+    let tempLikesArray = [];
+
+    // Check if array exist
+    if ( post.likes !== undefined && post.likes !== null ) {
+      tempLikesArray = post.likes;
+
+      // Check if uid already exists in the array remove from array.
+      if (tempLikesArray.includes(this.currentUser.uid)){
+        const index = tempLikesArray.indexOf(this.currentUser.uid);
+        tempLikesArray.splice(index, 1);
+      } else {
+        tempLikesArray.push(this.currentUser.uid);
+      }
+    } else {
+      console.log('Add user: ', this.currentUser.uid);
+      tempLikesArray.push(this.currentUser.uid);
+    }
+
+    return this.afs.collection('posts').doc(post.id).update({
+      likes: tempLikesArray,
+    });
+
   }
 
 }

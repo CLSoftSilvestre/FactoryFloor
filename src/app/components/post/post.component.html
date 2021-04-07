@@ -31,8 +31,9 @@
     </ion-grid>
 
     <ion-grid>
-      <ion-row class="btnRow">
-        <ion-chip *ngIf="post.type==='request'" size="small">
+      <ion-row class="btnRow ion-align-items-center">
+
+        <!--ion-chip *ngIf="post.type==='request'" size="small">
           <ion-icon name="hammer-outline" color="danger"></ion-icon>
           <ion-label>Request assistance</ion-label>
         </ion-chip>
@@ -43,12 +44,22 @@
         <ion-chip *ngIf="post.type==='question'" size="small">
           <ion-icon name="help-circle-outline" color="warning"></ion-icon>
           <ion-label>Question</ion-label>
-        </ion-chip>
+        </ion-chip-->
 
-        <ion-chip *ngIf="(post.comments$ | async)?.length>=0" size="small">
-          <ion-icon name="chatbox-ellipses-outline" color="success"></ion-icon>
-          <ion-label>{{ post.countComments }} Comments</ion-label>
-        </ion-chip>
+        <ion-col size="6" class="ion-align-self-center">
+          <ion-chip *ngIf="(post.comments$ | async)?.length>=0" size="small">
+            <ion-icon name="chatbox-ellipses-outline" color="success"></ion-icon>
+            <ion-label>{{ post.countComments }} Comments</ion-label>
+          </ion-chip>
+        </ion-col>
+        
+        <ion-col size="6" class="ion-align-self-center">
+          <ion-chip *ngIf="post.countLikes >= 0" size="small">
+            <ion-icon name="heart-outline" color="danger"></ion-icon>
+            <ion-label>{{ post.countLikes }} Likes</ion-label>
+          </ion-chip>
+      </ion-col>
+
       </ion-row>
     </ion-grid>
 
@@ -100,7 +111,7 @@
         </ion-col>
 
         <ion-col size="4" class="ion-align-self-center">
-          <ion-button (click)="togglePostLiked()" color="secondary"><ion-icon [ngClass]="{'liked' : postLiked}" [name]="postLiked === true ? 'heart' : 'heart-outline'" slot="icon-only"></ion-icon></ion-button>
+          <ion-button (click)="togglePostLiked()" color="secondary"><ion-icon [ngClass]="{'liked' : post.userLikes}" [name]="post.userLikes === true ? 'heart' : 'heart-outline'" slot="icon-only"></ion-icon></ion-button>
         </ion-col>
 
       </ion-row>
