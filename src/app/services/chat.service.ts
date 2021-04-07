@@ -54,7 +54,7 @@ export class ChatService {
       }),
       map(messages => {
         for (const m of messages) {
-          m.fromName = this.getUserForMsg(m.from, users);
+          m.fromName = this.getUserProfile(m.from, users).name;
           m.myMsg = this.currentUser.uid === m.from;
         }
         console.log('all messages: ', messages);
@@ -67,12 +67,13 @@ export class ChatService {
     return this.afs.collection('users').valueChanges({ idField: 'uid' }) as Observable<User[]>;
   }
 
-  getUserForMsg(msgFromId, users: User[]): string {
+  getUserProfile(msgFromId, users: User[]): User {
     for (const usr of users) {
       if (usr.uid === msgFromId) {
-        return usr.name;
+        return usr;
       }
     }
-    return 'Deleted';
+    return null;
   }
+
 }

@@ -78,7 +78,7 @@ export class PostService {
       }),
       map(posts => {
         for (const m of posts) {
-          m.from = this.getUserForPost(m.from, users);
+          m.from = this.getUserProfile(m.from, users).name;
           m.userProfile = this.getUserProfile(m.from, users);
 
           // check if likes array exist
@@ -116,7 +116,7 @@ export class PostService {
       }),
       map(comments => {
         for (const c of comments) {
-          c.fromName = this.getUserForPost(c.from, users);
+          c.fromName = this.getUserProfile(c.from, users).name;
         }
         return comments;
       })
@@ -125,15 +125,6 @@ export class PostService {
 
   getUsers() {
     return this.afs.collection('users').valueChanges({ idField: 'uid' }) as Observable<User[]>;
-  }
-
-  getUserForPost(msgFromId, users: User[]): string {
-    for (const usr of users) {
-      if (usr.uid === msgFromId) {
-        return usr.name;
-      }
-    }
-    return 'Deleted';
   }
 
   getUserProfile(msgFromId, users: User[]): User {
