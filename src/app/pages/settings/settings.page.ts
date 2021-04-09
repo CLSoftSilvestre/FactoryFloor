@@ -9,16 +9,19 @@ import { AuthService, User } from 'src/app/services/auth.service';
 })
 export class SettingsPage implements OnInit {
 
-  currentUser;
+  loadingData: Boolean = true;
+  currentUser: User;
 
   constructor( private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    this.currentUser = this.authService.getUserProfile();
-
-    console.log('Current passed user: ', this.currentUser);
+    this.authService.getUserProfile().subscribe((profile: User) => {
+      this.currentUser = profile;
+      console.log('Current passed user: ', profile);
+      this.loadingData = false;
+    });
 
   }
 
