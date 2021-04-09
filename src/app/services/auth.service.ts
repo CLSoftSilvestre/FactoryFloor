@@ -60,8 +60,8 @@ export class AuthService {
     const observable = new Observable((observer) => {
       this.getCurrentUser().then( uid => {
         // console.log('User UID: ', uid);
-        this.afs.collection('users').doc(uid).valueChanges().subscribe( (profile:User) => {
-          if( profile.image === 'notdefined') {
+        this.afs.collection('users').doc(uid).valueChanges().subscribe( (profile: User) => {
+          if ( profile.image === 'notdefined') {
             profile.image = 'assets/undraw_male_avatar_323b.svg';
           }
           observer.next(profile);

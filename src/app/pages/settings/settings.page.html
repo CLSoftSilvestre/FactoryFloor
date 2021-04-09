@@ -14,12 +14,53 @@
 
       <div class="card-body">
         <div class="user-meta ion-text-center">
-          <h3 class="username">{{currentUser.name}}</h3>
-          <h5 class="email">{{currentUser.email}}</h5>
-          <!--h6 class="ranking">Current ranking: <ion-chip>
-            <ion-label>2</ion-label>
-            </ion-chip>
-          </h6-->
+          <ion-list>
+            <ion-list-header>User data</ion-list-header>
+
+            <ion-item>
+              <ion-label position="stacked">Show name</ion-label>
+              <ion-input [value]="currentUser.name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input [value]="currentUser.email" readonly></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Department</ion-label>
+              <ion-select placeholder="Select One">
+                <ion-select-option value="p">Production</ion-select-option>
+                <ion-select-option value="q">Quality</ion-select-option>
+                <ion-select-option value="s">Safety</ion-select-option>
+                <ion-select-option value="e">Enviroment</ion-select-option>
+                <ion-select-option value="m">Maintenance</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Role</ion-label>
+              <ion-input placeholder="User role in organization"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Phone number</ion-label>
+              <ion-input placeholder="00351123456"></ion-input>
+            </ion-item>
+
+            <ion-list-header>App data</ion-list-header>
+
+            <ion-item>
+              <ion-label position="stacked">Allow users to call me</ion-label>
+              <ion-checkbox slot="end" checked="true"></ion-checkbox>
+            </ion-item>
+          </ion-list>
+
+          <ion-button class="ion-margin" expand="block">
+            <ion-icon slot="start" name="save-outline"></ion-icon>
+            Save settings
+          </ion-button>
+
         </div>
       </div>
 
