@@ -1,7 +1,13 @@
 # FACTORY FLOOR
 Mobile app to manage workshop equipments data, technical data, safety information and procedures.
 
-# Colors theme
+## Printscreens of the App
+
+![alt text](https://github.com/CLSoftSilvestre/FactoryFloor/blob/master/printscreens/SigninAndSignup.jpg?raw=true)
+
+![alt text](https://github.com/CLSoftSilvestre/FactoryFloor/blob/master/printscreens/AppScreens.jpg?raw=true)
+
+## Colors theme
 Primary:    #05445E
 Secondary:  #189AB4
 Terceary:   #75E6DA
