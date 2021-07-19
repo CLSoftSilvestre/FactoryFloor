@@ -46,7 +46,8 @@ export class SignupPage implements OnInit {
       this.authService.signUp(this.credentialForm.value).then(user => {
         loading.dismiss();
         // replaced URL faz com que o utilizador não possa retroceder no Android
-        this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+        //this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+        this.ShowNotValidated();
       }, async err => {
         loading.dismiss();
         const alert = await this.alertController.create({
@@ -70,6 +71,16 @@ export class SignupPage implements OnInit {
 
   get confirmpassword() {
     return this.credentialForm.get('confirmpassword');
+  }
+
+  async ShowNotValidated(){
+    const alert = await this.alertController.create({
+      header: 'Email not validaded',
+      message: 'Please check your inbox...',
+      buttons: ['OK'],
+    });
+
+    await alert.present();   
   }
 
 }

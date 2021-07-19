@@ -34,6 +34,8 @@ export class AuthService {
     console.log('result: ', credential);
     const uid = credential.user.uid;
 
+    await credential.user.sendEmailVerification();
+
     return this.afs.doc(
       `users/${uid}`
       ).set({

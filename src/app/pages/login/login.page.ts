@@ -34,7 +34,9 @@ export class LoginPage implements OnInit {
     this.authService.signUp(this.credentialForm.value).then(user => {
       loading.dismiss();
       // replaced URL faz com que o utilizador não possa retroceder no Android
-      this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+      // this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+      this.ShowNotValidated();
+
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({
@@ -53,8 +55,17 @@ export class LoginPage implements OnInit {
 
     this.authService.signIn(this.credentialForm.value).then(user => {
       loading.dismiss();
-      // replaced URL faz com que o utilizador não possa retroceder no Android
-      this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+      // Check if user already validades email
+      if(user.user.emailVerified == true){
+        // replaced URL faz com que o utilizador não possa retroceder no Android
+        this.router.navigateByUrl('/tabs/feed', { replaceUrl: true });
+
+      } else {
+        //Email was not validated
+        this.ShowNotValidated();
+
+      }
+      
     }, async err => {
       loading.dismiss();
       const alert = await this.alertController.create({
@@ -74,6 +85,17 @@ export class LoginPage implements OnInit {
 
   get password() {
     return this.credentialForm.get('password');
+  }
+
+  // Show alert for email not validated
+  async ShowNotValidated(){
+    const alert = await this.alertController.create({
+      header: 'Email not validaded',
+      message: 'Please check your inbox...',
+      buttons: ['OK'],
+    });
+
+    await alert.present();   
   }
 
 }
