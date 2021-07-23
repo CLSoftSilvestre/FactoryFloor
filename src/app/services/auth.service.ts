@@ -62,6 +62,7 @@ export class AuthService {
   }
 
   getUserProfile()  {
+
     const observable = new Observable((observer) => {
       this.getCurrentUser().then( uid => {
         // console.log('User UID: ', uid);
@@ -79,7 +80,13 @@ export class AuthService {
 
   // Save user data
   saveUserData(profile: User){
-    // Save user data...
+    return this.afs.doc(`users/${profile.uid}`).update({
+      name: profile.name,
+      department: profile.department,
+      role: profile.role,
+      phone: profile.phone,
+      allowCalls: profile.allowCalls,
+    });
   }
 
 }

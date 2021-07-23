@@ -19,7 +19,7 @@
 
             <ion-item>
               <ion-label position="stacked">Show name</ion-label>
-              <ion-input [value]="currentUser.name"></ion-input>
+              <ion-input [(ngModel)]="currentUser.name"></ion-input>
             </ion-item>
 
             <ion-item>
@@ -29,7 +29,7 @@
 
             <ion-item>
               <ion-label>Department</ion-label>
-              <ion-select placeholder="Select One" [value]="currentUser.department">
+              <ion-select placeholder="Select One" [(ngModel)]="currentUser.department">
                 <ion-select-option value="Production">Production</ion-select-option>
                 <ion-select-option value="Quality">Quality</ion-select-option>
                 <ion-select-option value="Safety">Safety</ion-select-option>
@@ -40,12 +40,12 @@
 
             <ion-item>
               <ion-label position="stacked">Role</ion-label>
-              <ion-input placeholder="User role in organization" [value]="currentUser.role"></ion-input>
+              <ion-input placeholder="User role in organization" [(ngModel)]="currentUser.role"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Phone number</ion-label>
-              <ion-input placeholder="00351123456" [value]="currentUser.phone"></ion-input>
+              <ion-input placeholder="00351123456" [(ngModel)]="currentUser.phone"></ion-input>
             </ion-item>
 
             <ion-list-header>App data</ion-list-header>
@@ -56,7 +56,7 @@
             </ion-item>
           </ion-list>
 
-          <ion-button class="ion-margin" expand="block">
+          <ion-button class="ion-margin" expand="block" (click)="saveUserData()">
             <ion-icon slot="start" name="save-outline"></ion-icon>
             Save settings
           </ion-button>

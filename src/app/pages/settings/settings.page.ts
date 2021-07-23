@@ -25,4 +25,9 @@ export class SettingsPage implements OnInit {
 
   }
 
+  saveUserData(){
+    console.log("Current User=", this.currentUser);
+    this.authService.saveUserData(this.currentUser);
+  }
+
 }
