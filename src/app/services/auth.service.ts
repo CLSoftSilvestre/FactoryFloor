@@ -11,6 +11,9 @@ export interface User {
   name?: string;
   image?: string;
   phone?: string;
+  department?: string;
+  role?: string;
+  allowCalls?: boolean; 
 }
 
 @Injectable({
@@ -73,4 +76,10 @@ export class AuthService {
     });
     return observable;
   }
+
+  // Save user data
+  saveUserData(profile: User){
+    // Save user data...
+  }
+
 }

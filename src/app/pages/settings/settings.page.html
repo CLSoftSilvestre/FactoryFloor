@@ -29,30 +29,30 @@
 
             <ion-item>
               <ion-label>Department</ion-label>
-              <ion-select placeholder="Select One">
-                <ion-select-option value="p">Production</ion-select-option>
-                <ion-select-option value="q">Quality</ion-select-option>
-                <ion-select-option value="s">Safety</ion-select-option>
-                <ion-select-option value="e">Enviroment</ion-select-option>
-                <ion-select-option value="m">Maintenance</ion-select-option>
+              <ion-select placeholder="Select One" [value]="currentUser.department">
+                <ion-select-option value="Production">Production</ion-select-option>
+                <ion-select-option value="Quality">Quality</ion-select-option>
+                <ion-select-option value="Safety">Safety</ion-select-option>
+                <ion-select-option value="Environment">Enviroment</ion-select-option>
+                <ion-select-option value="Maintenance">Maintenance</ion-select-option>
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Role</ion-label>
-              <ion-input placeholder="User role in organization"></ion-input>
+              <ion-input placeholder="User role in organization" [value]="currentUser.role"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Phone number</ion-label>
-              <ion-input placeholder="00351123456"></ion-input>
+              <ion-input placeholder="00351123456" [value]="currentUser.phone"></ion-input>
             </ion-item>
 
             <ion-list-header>App data</ion-list-header>
 
             <ion-item>
               <ion-label position="stacked">Allow users to call me</ion-label>
-              <ion-checkbox slot="end" checked="true"></ion-checkbox>
+              <ion-checkbox slot="end" [(ngModel)]="currentUser.allowCalls"></ion-checkbox>
             </ion-item>
           </ion-list>
 

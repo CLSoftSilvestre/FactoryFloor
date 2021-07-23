@@ -4,14 +4,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { User } from 'src/app/services/auth.service';
 
-export interface User {
-  uid: string;
-  email: string;
-  name?: string;
-  image?: string;
-  phone?: string;
-}
+// export interface User {
+//   uid: string;
+//   email: string;
+//   name?: string;
+//   image?: string;
+//   phone?: string;
+// }
 
 export interface Message {
   createdAt: firebase.default.firestore.FieldValue;
