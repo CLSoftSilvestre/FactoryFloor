@@ -1,8 +1,8 @@
 {
   "name": "factoryfloor",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Celso Silvestre",
+  "homepage": "http://azordev.pt",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

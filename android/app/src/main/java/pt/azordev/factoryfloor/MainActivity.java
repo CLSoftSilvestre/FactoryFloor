@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package pt.azordev.factoryfloor;
 
 import android.os.Bundle;
 

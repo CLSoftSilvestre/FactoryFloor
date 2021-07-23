@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">factoryfloor</string>
-    <string name="title_activity_main">factoryfloor</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Factory Floor</string>
+    <string name="title_activity_main">Factory Floor</string>
+    <string name="package_name">pt.azordev.factoryfloor</string>
+    <string name="custom_url_scheme">pt.azordev.factoryfloor</string>
 </resources>
